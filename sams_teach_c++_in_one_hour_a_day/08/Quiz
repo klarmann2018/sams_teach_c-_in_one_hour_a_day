@@ -1,0 +1,19 @@
+1. Why can't you assign a const reference to a non-const reference?
+-- if the compiler let you do that, it would be an easy way to break exactly what
+  const references were meant to protect: the data being refered to that cannot
+  be changed.
+- 
+
+2. Are new and delete functions?
+- 是
+-- They're operators.
+
+3. What is the nature of value contained in a pointer variable?
+- 
+-- A memory address.
+
+4. What operator would you use to access the data pointed by a pointer?
+- *
+-- operator (*).
+
+

@@ -1,0 +1,35 @@
+MY_INCLUDES=-I $(HOME)/include
+MY_LIBS=-L $(HOME)/lib
+
+CC=g++
+CC_FLAG=-Wall
+INC=$(MY_INCLUDES)
+LIB=$(MY_LIBS) -lclntsh -locci -lxerces -c -lptread
+
+PRG=main
+SRCS=main.cpp employee.cpp 
+OBJS=$(SRCS:%.cpp=%.o)
+
+
+
+$(PRG): $(OBJS)
+	@echo "Link $(OBJS) to $(PRG) begin ..."
+	$(CC) -o $@ $^
+	@echo "Link $(OBJS) to $(PRG) end ...."
+	@echo "SRCS:  $(SRCS)"
+	@echo "OBJS:  $(OBJS)"
+
+
+
+
+
+.PHONY : clean
+clean:
+	@echo "Removing linked and compiled files ... ..."
+	rm -f $(OBJS) $(PRG)
+
+
+#@echo "Compile $(OBJS) begin ... ..."
+#.c++.o:
+#	$(CC) -c $<	
+

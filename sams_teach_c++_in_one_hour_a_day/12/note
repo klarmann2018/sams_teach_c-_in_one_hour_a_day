@@ -1,0 +1,2 @@
+1.关于 listing12_03 的 unique_ptr 编译问题
+    $g++ -str=c++11 listing12_03.cpp

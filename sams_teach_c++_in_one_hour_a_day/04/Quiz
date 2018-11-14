@@ -1,0 +1,17 @@
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""" 
+"                           Quiz                            "
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""" 
+1. 
+indexes of the first elements: 0
+indexes of the last elements: : 4
+
+2.
+no i will use the C++ string.
+
+3.
+exlusive '\0'
+
+4.
+if forget to add the '\0' then expect the output to contain garbled characters after printing the string.
+5.
+vector<char> DynArrChar(3);

@@ -1,0 +1,30 @@
+1. When I create an instance of a class using new, where is the class created?
+-   heap, 在堆栈。
+--  On the free store. This is the same as it would be if you allocated for an
+int using new.
+
+2. My class has a raw point int* that contains a dynamically allocated array of
+   integers. Does sizeof report different sizes depending on the number of
+   integers in the dynamic array?
+- no, sizeof is integer size. 还是整数尺寸。 
+-- sizeof() calculates the size of a class on the basis of the declared data
+members. As the sizeof(pointer) is constant and independent of the mass of data
+being pointed to, the sizeof(Class) containg one such pointer member remains
+constant as well.
+
+3. All my class members are private, and my class does not contain any declared
+   friend class or function. Who can access these members?
+- 类自己的方法可以 get set
+-- None except member methods of the same class.
+
+4. Can one class member method invoke another?
+- 可以
+-- Yes, it can.
+
+5. What is constructor good for?
+-
+-- A constructor is typically used to initialize data members and resources.
+
+6. What is a destructor good for?
+- 析构函数 的作用 是 释放内存空间
+-- Destructors are typically used for releasing resources and deallocating memory.

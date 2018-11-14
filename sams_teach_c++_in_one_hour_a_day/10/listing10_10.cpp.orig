@@ -1,0 +1,62 @@
+/*
+ * =====================================================================================
+ *
+ *       Filename:  listing10_10.cpp
+ *
+ *    Description:  using multiple inheritance, model Platypus that is part
+ *    Mammal, part Bird, and part Reptile
+ *  
+ *
+ *        Version:  1.0
+ *        Created:  2017年03月07日 10时18分49秒
+ *       Revision:  none
+ *       Compiler:  gcc
+ *
+ *         Author:  bo lee
+ *   Organization:  
+ *
+ * =====================================================================================
+ */
+#include<iostream>
+using namespace std;
+
+class Mammal{
+    public:
+        void feedBabyMilk(){
+       cout<<"Mammal: Baby says glug!"<<endl; 
+        }
+};
+
+class Reptile{
+    public:
+        void spitVenom(){
+           cout<<"Reptile: Shoo ememy! Spits venom!"<<endl; 
+        }
+
+};
+
+class Bird{
+    public:
+        void layEggs(){
+           cout<<"Bird: Laid my eggs, am lighter now!"<<endl; 
+        }
+};
+
+class Platypus:public Mammal, public Bird, public Reptile{
+    public:
+        void swim(){
+           cout<<"Platypus: Voila, i can swim!"<<endl; 
+        }
+
+};
+
+int main(){
+Platypus realFreak;
+realFreak.layEggs();
+realFreak.feedBabyMilk();
+realFreak.spitVenom();
+realFreak.swim();
+    
+return 0;
+}
+

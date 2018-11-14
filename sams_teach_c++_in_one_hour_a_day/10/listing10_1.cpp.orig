@@ -1,0 +1,63 @@
+/*
+ * =====================================================================================
+ *
+ *       Filename:  listing10_1.cpp
+ *
+ *    Description:  Fish, carp, tuna, inherit
+ *
+ *        Version:  1.0
+ *        Created:  2017年03月04日 17时29分23秒
+ *       Revision:  none
+ *       Compiler:  gcc
+ *
+ *         Author: bo lee
+ *   Organization:  
+ *
+ * =====================================================================================
+ */
+#include <iostream>
+using namespace std;
+
+class Fish{
+
+    public:
+        bool freshfish;
+
+        void swim(){
+           if(freshfish){
+          cout << "Swim in lake"<<endl; 
+           
+           } else{
+           
+          cout << "Swim in See" << endl; 
+           }
+        
+        }
+};
+class Carp : public Fish{
+    public :
+        Carp(){
+freshfish=true;
+
+}
+
+};
+class Tuna : public Fish{
+    public:
+    Tuna(){
+        freshfish=false;
+    
+    }
+};
+
+int main(){
+Carp myLunch;
+Tuna myDinner;
+
+cout << "Getting my food to swim"<< endl;
+
+cout << "My Lunch:"<< myLunch.swim()<<endl;
+
+cout << "My Dinner"<< myDinner.swim()<<endl;
+
+}

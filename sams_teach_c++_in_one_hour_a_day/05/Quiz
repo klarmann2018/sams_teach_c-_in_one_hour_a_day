@@ -1,0 +1,17 @@
+1.
+float
+
+2.
+4
+
+3.
+4.555
+
+4.
+not a function, is a operator.
+
+5.
+incorrect. (number << 1) + 5 << 1;
+
+6.
+false.

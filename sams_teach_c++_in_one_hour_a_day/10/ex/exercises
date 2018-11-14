@@ -1,0 +1,16 @@
+1. In what order are the constructors invoked for class Platypus as shown in Listing 10.10?
+按继承顺序。
+
+2. Show how a class Polygon, class Triangle, and class Shape are related to each other.
+base class: Shape
+subclass: Triangle, Polygon
+
+3.
+class Base{};
+class D1:public Base{};
+class D2:public D2{};
+
+4.
+private,protected
+
+5.

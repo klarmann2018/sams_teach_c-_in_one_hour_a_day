@@ -1,0 +1,12 @@
+main: main.o employee.o
+	g++ -o $@ $^
+
+main.o: main.cpp employee.h
+	g++ -c $<
+
+employee.o: employee.cpp employee.h
+	g++ -c $<
+
+clean:
+	rm *.o
+

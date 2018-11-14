@@ -1,0 +1,21 @@
+1. What is the scope of variables declared in a function's prototype?
+局部变量， 作用域在函数范围内。
+The scope of these variables is the life of the function.
+
+2. What is the nature of the value passed to this function? int Func(int &SomeNumber)
+是内存同一个位置， reference 同步改变。
+SomeNumber is a reference to the variable in the calling function. It dose not hold a copy.
+
+3. I have a function that invokes itself. What is such a function called?
+recursive function 递归函数
+A recursive function
+
+4. I have declared two functions, both with the same name and return type but
+   different parameter lists. What are these called?
+overloaded function. 重载函数
+Overloaded functions.
+
+5. Does the stack pointer point to the top, middle, or bottom of the stack?
+top. 堆栈指针指向堆栈上端。
+Top! Visualize a stack of plates; the one at the top is available for
+withdrawal, and that is what the stack pointer points to.

@@ -1,0 +1,17 @@
+1.
+
+2.  
+goto: goto is not the recommanded form of programming loops because the prolific
+usage of goto can result in unpredictable flow of code where execution can jump
+from one line to another in no particular order or sequence, in some cases
+leaving variables in unpredictable states, too.
+
+3.
+    for(int i=5; i > 0; --i )
+    {
+
+    }
+
+4.
+
+
