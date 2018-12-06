@@ -24,34 +24,39 @@ private:
     int day,month,year;
 public:
     Date(int InputDay,int InputMonth,int InputYear):day(InputDay),month(InputMonth),year(InputYear) {}
-    void displayDate() {
-        cout<< day <<"/"<<month<<"/"<<year<<endl;
+    void displayDate() 
+    {
+        cout << day << "/" << month << "/" << year << endl;
     }
 
-    Date& operator ++() {
+    Date& operator ++() 
+    {
         day++;
         return *this;
     }
-    Date& operator --() {
+
+    Date& operator --() 
+    {
         day--;
         return *this;
     }
 
 };
 
-int main() {
+int main() 
+{
     Date holiday(25,12,2016);
 
-    cout<<"the date object is initialized to: ";
+    cout << "the date object is initialized to: ";
     holiday.displayDate();
 
     ++holiday;
-    cout<<"the date after prefix-increment: ";
+    cout << "the date after prefix-increment: ";
     holiday.displayDate();
 
     --holiday;
     --holiday;
-    cout<<"the date after two prefix-decriments: ";
+    cout << "the date after two prefix-decriments: ";
     holiday.displayDate();
 
     return 0;
