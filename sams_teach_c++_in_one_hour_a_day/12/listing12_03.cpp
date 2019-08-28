@@ -30,6 +30,7 @@ private:
 
 public:
     Date(int InputDay, int InputMonth, int InputYear):day(InputDay),month(InputMonth),year(InputYear) {}
+
     void displayDate() {
         cout<<day<<"/"<<month<<"/"<<year<<endl;
     }
@@ -39,11 +40,18 @@ int main() {
     unique_ptr<int> pDynamicAllocInteger(new int);
     *pDynamicAllocInteger=42;
 
+    // Use smart pointer type like an int*
     cout<<"Integer value is: " << *pDynamicAllocInteger<<endl;
 
     unique_ptr<Date> pHoliday(new Date(25,11,2011));
     cout<< "The new instance of date contains: ";
+
+    // use pHoliday just as you would a Date*
     pHoliday->displayDate();
+
+    // no need to do the following when using unique_ptr:
+    // delete pDynamicAllocInteger;
+    // delete pHoliday;
 
     return 0;
 }
