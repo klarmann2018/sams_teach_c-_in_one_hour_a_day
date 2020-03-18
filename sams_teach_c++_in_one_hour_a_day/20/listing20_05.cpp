@@ -16,11 +16,29 @@
  * =====================================================================================
  */
 #include<map>
+#include<algorithm>
 #include<string>
 #include<iostream>
-#include<algorithm>
 
 using namespace std;
+
+struct PredIgnoreCase
+{
+    bool operator() (const string& str1, const string& str2) const
+    {
+        string str1NoCase(str1), str2NoCase(str2);
+        //   TODO: compile failure
+        //2020-03-08 09:12:34  解决 gcc 可能有 一个以上的重载 声明一下 tolower
+        int tolower(int);
+        std::transform(str1.begin(), 
+                  str1.end(), 
+                  str1NoCase.begin(), 
+                  tolower);
+        transform(str2.begin(), str2.end(), str2NoCase.begin(), tolower);
+
+        return(str1NoCase < str2NoCase);
+    };
+};
 
 template<typename T>
 void DisplayContents(const T& Input)
@@ -31,20 +49,8 @@ void DisplayContents(const T& Input)
         cout << iElement -> first << " -> " << iElement -> second << endl;
 
     cout << endl;
-}
-
-struct PredIgnoreCase
-{
-    bool operator() (const string& str1, const string& str2) const
-    {
-        string str1NoCase(str1), str2NoCase(str2);
-        //   TODO: compile failure
-     //   std::transform(str1.cbegin(), str1.cend(), str1NoCase.cbegin(), tolower);
-    //    std::transform(str2.cbegin(), str2.cend(), str2NoCase.cbegin(), tolower);
-
-        return(str1NoCase < str2NoCase);
-    };
 };
+
 
 typedef map<string, string> DIRECTORY_WITHCASE;
 typedef map<string, string, PredIgnoreCase> DIRECTORY_NOCASE;
