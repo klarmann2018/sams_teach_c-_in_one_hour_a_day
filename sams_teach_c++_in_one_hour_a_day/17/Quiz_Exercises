@@ -1,0 +1,137 @@
+Quiz
+
+1. Can elements be inserted at the middle or the beginning of a vector in
+   constant time?
+- vector can insert at the ending.
+
+ans:
+    No, they can't. Elements can only be added at the back(that is, the end) of
+    a vector sequence in constant time.
+
+2. My vector return size() as 10 and capacity() as 20. How many more elements
+   can I insert in it without needing the vector class to trigger a buffer
+   reallocation?
+
+- 20
+
+ans:
+    10 more. At the 11th insertion, you trigger a reallocation.
+
+3. What does the pop_back function do?
+
+- remove the element of the ending in deque or vector
+
+ans:
+    Deletes the last element; that is, removes the element at the back.
+
+4. if vector<int> is a dynamic array of integers, a vector<CMammal> is a dynamic
+   array of what type?
+
+- type is CMammal
+
+ans:
+    Of type CMammal.
+
+5. Can elements in a vector be randomly accessed? If so, how?
+
+- similar as Array, by index []
+
+ans:
+    Via(a) the subscript operator([ ]) (b) Function at().
+
+6. What iterator type allows random access of elements in a vector?
+
+- auto? const_iterator
+
+ans:
+    Random-access iterator.
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""" 
+Exercises
+
+1. Write an interactive program that accepts integer input from the user and
+   saves it in the vector. The user should be able to query a value stored in
+   the vector at any time, given an index.
+
+- see ex17_01.cpp
+
+ans:
+
+One solution is 
+
+#include <vector>
+#include <iostream>
+
+using namespace std;
+
+char DisplayOptions()
+{
+    
+    cout << "What would you like to do?" << endl;
+    cout << "Select 1: To enter an integer" << endl;
+    cout << "Select 2: Query a value given an index" << endl;
+    cout << "Select 3: To display the vector" << endl << "> ";
+    cout << "Select 4: To quit!" << endl << "> ";
+
+    char ch;
+    cin >> ch;
+
+    return ch;
+}
+
+int main()
+{
+    vector<int> vecData;
+
+    char chUserChoise = '\0';
+    while((chUserChoise = DisplayOptions())!='4')
+    {
+        if(chUserChoise=='1')
+        {
+            cout << "Please enter an integer to be inserted: ";
+            int nDateInput=0;
+            cin >> nDateInput;
+
+            vecData.push_back(nDateInput);
+        }
+        else if(chUserChoise == '2')
+        {
+            cout << "Please enter an index between 0 and ";
+            cout <<( vecData.size()-1) << ": ";
+            int nIndex = 0;
+            cin >> nIndex;
+
+            if(nIndex < (vecData.size()))
+            {
+                cout << "Element [" << nIndex << "] =" << vecData[nIndex];
+                cout << endl;
+            }
+        }
+        else if(chUserChoise == '3')
+        {
+            cout << "The contents of the vector are: " ;
+            for(size_t nIndex = 0; nIndex < vecData.size(); ++ nIndex)
+                cout << vecData[nIndex] << ' ';
+            cout << endl;
+        }
+    }
+    return 0;
+}
+2. Extend the progam from Exercise 1 to be able to tell the user whether a value
+   he queries for already exists in the vector.
+
+- see ex17_02.cpp
+
+ans:
+    Use the std::find algorithm:
+    vector<int>::iterator iElementFound = std::find(vecData.begin(), vecData.end(), nDateInput);
+
+3. Jack sells jars on eBay. To help him with packaging and shipment, write a
+   program in which he can enter the dimensions of each of these articles, store
+   them in a vector, and have them printed on the screen.
+
+- see ex17_03.cpp
+
+ans:
+    
+    Derive from the code sample in the solution to Exercise 1 to accept user input and print the contents of a vector.

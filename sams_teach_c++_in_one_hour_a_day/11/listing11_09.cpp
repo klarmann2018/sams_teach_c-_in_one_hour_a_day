@@ -7,7 +7,7 @@
  *    Virtual Copy Constructor
  *
  *        Version:  1.0
- *        Created:  11/21/2018 03:47:03 PM
+ *        Created:  07/22/2019 06:22:40 PM
  *       Revision:  none
  *       Compiler:  gcc
  *
@@ -19,31 +19,34 @@
 #include<iostream>
 using namespace std;
 
-class Fish
+class Fish 
 {
     public:
         virtual Fish* Clone() = 0;
         virtual void Swim() = 0;
+
 };
 
-class Tuna:public Fish 
+class Tuna: public Fish
 {
     public:
         Fish* Clone()
         {
+            //return new Tuna ();
             return new Tuna (*this);
         }
 
         void Swim()
         {
-            cout << "Tuna swims fast in the sea" << endl;
+            cout <<  "Tuna swim fast in the sea" << endl;
         }
 };
 
-class Carp:public Fish
+class Carp: public Fish
 {
     Fish* Clone()
     {
+        //return new Carp();
         return new Carp(*this);
     }
 
@@ -53,7 +56,7 @@ class Carp:public Fish
     }
 };
 
-int main()
+int main ()
 {
     const int ARRAY_SIZE = 4;
 
@@ -65,11 +68,10 @@ int main()
 
     Fish* myNewFishes[ARRAY_SIZE];
     for(int Index = 0; Index < ARRAY_SIZE; ++Index)
-        myNewFishes[Index] = myFishes[Index]->Clone();
-
+        myNewFishes[Index] = myFishes[Index] ->Clone();
     // invoke a virtual method to check
     for(int Index = 0; Index < ARRAY_SIZE; ++Index)
-        myNewFishes[Index]->Swim();
+        myNewFishes[Index] ->Swim();
 
     // memory cleanup
     for(int Index = 0; Index < ARRAY_SIZE; ++Index)
@@ -77,6 +79,5 @@ int main()
         delete myFishes[Index];
         delete myNewFishes[Index];
     }
-
     return 0;
 }

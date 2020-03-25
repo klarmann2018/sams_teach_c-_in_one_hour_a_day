@@ -7,7 +7,7 @@
  *    Comparing Two Classes Identical but for a Function Declared Virtual
  *
  *        Version:  1.0
- *        Created:  11/16/2018 06:41:25 AM
+ *        Created:  07/18/2019 06:57:12 PM
  *       Revision:  none
  *       Compiler:  gcc
  *
@@ -30,9 +30,9 @@ class SimpleClass
 class Base
 {
     int a, b;
-    
+
     public:
-        virtual void FuncDoSomething(){}
+        virtual void FuncDoSomething() {}
 };
 
 int main()

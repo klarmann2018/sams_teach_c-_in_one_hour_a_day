@@ -37,6 +37,7 @@ int main()
     
     string FaveriteWhisky(FAV_WHISKY);
     cout << "My favorite drink is: " << FAV_WHISKY << endl;
-
+    cout << "My favorite drink is: " << FaveriteWhisky << endl;
+    
     return 0;
 }

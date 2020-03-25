@@ -17,7 +17,7 @@
  * =====================================================================================
  */
 #include <stdlib.h>
-#include<iostream>
+#include <iostream>
 using namespace std;
 
 template <typename Type>

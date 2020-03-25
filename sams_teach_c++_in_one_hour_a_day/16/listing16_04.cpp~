@@ -54,7 +54,7 @@ int main()
 
     cout << "Locating all instances of character 'a'" << endl;
     const char charToSearch = 'a';
-    charPos = strSample.find(charToSearch,0);
+    charPos =strSample.find(charToSearch,0);
     
     while(charPos != string::npos)
     {

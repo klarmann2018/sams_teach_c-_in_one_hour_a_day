@@ -7,7 +7,7 @@
  *    One Instance of Platypus
  *
  *        Version:  1.0
- *        Created:  11/20/2018 07:23:22 PM
+ *        Created:  07/19/2019 08:54:15 AM
  *       Revision:  none
  *       Compiler:  gcc
  *
@@ -16,7 +16,7 @@
  *
  * =====================================================================================
  */
-#include <iostream>
+#include<iostream>
 using namespace std;
 
 class Animal
@@ -59,8 +59,7 @@ int main()
     // uncomment next line to see compile failure
     // Age is ambiguous as there are three instances of base Animal
     // duckBilledP.Age = 25;
-
-    //duckBilledP.Mammal::Animal::Age = 25;
-
+    
     return 0;
 }
+

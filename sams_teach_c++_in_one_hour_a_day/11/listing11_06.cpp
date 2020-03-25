@@ -1,61 +1,54 @@
 /*
  * =====================================================================================
  *
- *       Filename:  listing11_06.cpp
+ *       Filename:  listing11_6.cpp
  *
  *    Description:  class Fish as an Abstract Base Class for Tuna and Carp
  *
  *        Version:  1.0
- *        Created:  11/15/2018 11:56:17 PM
+ *        Created:  2017年03月09日 18时17分25秒
  *       Revision:  none
  *       Compiler:  gcc
  *
  *         Author:  bo lee
- *   Organization:  
+ *   Organization:
  *
  * =====================================================================================
  */
 #include<iostream>
 using namespace std;
 
-class Fish
-{
-    public:
-        // define a pure virtual function Swim
-        virtual void Swim() = 0;
+class Fish {
+public:
+    virtual void swim()=0;
 };
 
-class Tuna:public Fish
-{
-    public:
-        void Swim()
-        {
-            cout << "Tuna swims fast in the sea!" << endl;
-        }
+class Tuna:public Fish {
+public:
+    void swim() {
+        cout<<"Tuna swims fast in the sea!" << endl;
+    }
 };
 
-class Carp:public Fish
-{
-    public:
-        void Swim()
-        {
-            cout << "Carp swims slow in the lake!" << endl;
-        }
+class Carp:public Fish {
+    void swim() {
+        cout<<"Carp swims slow in the lake!"<<endl;
+    }
+
 };
 
-void MakeFishSwim(Fish& inputFish)
-{
-    inputFish.Swim();
+void makeFishSwim(Fish& inputFish) {
+    inputFish.swim();
 }
 
-int main()
-{
-    // Fish myFish; // Fails, cannot instantiate an ABC
+int main() {
+
     Carp myLunch;
     Tuna myDinner;
 
-    MakeFishSwim(myLunch);
-    MakeFishSwim(myDinner);
+    makeFishSwim(myLunch);
+    makeFishSwim(myDinner);
 
     return 0;
 }
+

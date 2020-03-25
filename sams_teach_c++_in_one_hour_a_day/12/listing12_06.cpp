@@ -28,8 +28,7 @@ class Date
     public:
         
         // Constructor that initializes the object to a day, month and year
-        Date (int InputDay, int InputMonth, int InputYear)
-        :Day(InputDay), Month(InputMonth),Year(InputYear){};
+        Date (int InputDay, int InputMonth, int InputYear) :Day(InputDay), Month(InputMonth),Year(InputYear){};
         
         // Binary addition assignment
         void operator += (int DaysToAdd)

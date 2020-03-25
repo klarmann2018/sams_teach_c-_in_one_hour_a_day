@@ -1,0 +1,11 @@
+BecomeDinner	listing13_01.cpp	/^        void BecomeDinner()$/
+Carp	listing13_01.cpp	48
+DetectFishType	listing13_01.cpp	/^void DetectFishType(Fish* InputFish)$/
+Fish	listing13_01.cpp	22
+Mlisting13_01.cpp	listing13_01.cpp	/^int main()$/
+Swim	listing13_01.cpp	/^        virtual void Swim()$/
+Swim	listing13_01.cpp	/^        void Swim()$/
+Swim	listing13_01.cpp	/^        void Swim()$/
+Talk	listing13_01.cpp	/^        void Talk()$/
+Tuna	listing13_01.cpp	34
+~Fish	listing13_01.cpp	/^        virtual ~Fish(){}$/

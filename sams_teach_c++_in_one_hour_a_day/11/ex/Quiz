@@ -1,0 +1,29 @@
+1. You are modeling shapes -- circle and triangle -- and what every shape to compulsorily implement functions Area() and Print(). How would you do it?
+class shape()
+{
+        public: 
+            virtual area()=0;
+            virtual print()=0;
+    }
+
+class circle : public shape
+{
+
+}
+
+class triangle : public shape
+{
+
+}
+
+2. Does a compiler create a Virtual Fuction Table for all classes?
+no
+It creates a VFT only for those classes that contain virtual functions; this includes derived classes, too.
+
+3. My class Fish has two public methods, one pure virtual function, and some member attributes. Is it still an abstract base class?
+yes, it is.
+it still cannot be instantiated. As long as a class has at least one pure
+virtual function, it remains an ABC irrespective of the presence or absence of
+other fully defined functions or parameters.
+
+

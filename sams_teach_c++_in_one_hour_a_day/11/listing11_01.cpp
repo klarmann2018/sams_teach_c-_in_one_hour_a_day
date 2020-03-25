@@ -18,32 +18,26 @@
 #include <iostream>
 using namespace std;
 
-class Fish 
-{
+class Fish {
 public:
-    void swim() 
-    {
-        cout <<"Fish swims!" << endl;
+    void swim() {
+        cout<<"Fish swims!"<<endl;
     }
 
 };
 
-class Tuna: public Fish 
-{
+class Tuna: public Fish {
 public:
-    void swim() 
-    {
-        cout << "tuna swims!" << endl;
+    void swim() {
+        cout<<"tuna swims!"<<endl;
     }
 };
 
-void makeFishSwim(Fish& inputFish) 
-{
+void makeFishSwim(Fish& inputFish) {
     inputFish.swim();
 }
 
-int main() 
-{
+int main() {
     Tuna myDinner;
     
     //calling Tuna::swim()

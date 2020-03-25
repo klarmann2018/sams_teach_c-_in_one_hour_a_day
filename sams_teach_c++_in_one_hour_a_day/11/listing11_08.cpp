@@ -7,7 +7,7 @@
  *    Helps Restrict the Number of Instances of Base Class Animal to One
  *
  *        Version:  1.0
- *        Created:  11/20/2018 07:48:45 PM
+ *        Created:  07/20/2019 09:04:18 AM
  *       Revision:  none
  *       Compiler:  gcc
  *
@@ -16,7 +16,7 @@
  *
  * =====================================================================================
  */
-#include<iostream>
+#include <iostream>
 using namespace std;
 
 class Animal
@@ -31,7 +31,7 @@ class Animal
         int Age;
 };
 
-class Mammal:public virtual Animal
+class Mammal: public virtual Animal
 {
 };
 
@@ -61,3 +61,5 @@ int main()
 
     return 0;
 }
+
+

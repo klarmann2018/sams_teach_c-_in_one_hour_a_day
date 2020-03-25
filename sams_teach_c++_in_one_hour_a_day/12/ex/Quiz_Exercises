@@ -1,0 +1,71 @@
+Quiz
+1. Can my subscript operator [] return const and non-const variants of return types?
+    const Type& operator[](int Index);
+    Type& operator[](int Index);    // is this OK?
+
+- no
+
+2.  Would you ever declare the copy constructor or copy assignment operator as private?
+
+- no
+
+3. Would it make sense to define a move constructor and move assignment operator for your class Date?
+
+- no sense.
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""" 
+
+Exercises
+
+1. Program a conversion operator for class Date that converts the date it holds into a unique integer.
+
+ans:
+class Date
+{
+    int Day, Month, Year;
+    public:
+        operator int()
+        {
+            return ((Year * 10000) + (Month * 100) + Day);
+        }
+}
+
+2. Program a move constructor and move assignment operator for class DynIntegers
+   that encapsulates a dynamically allocated array in the form of private member
+   int*.
+
+ans:
+   The move constructor and move assignment operators are seen below:
+
+   class DynIntegers
+   {
+    
+        private:
+            int* pIntegers;
+
+        public:
+            // move constructor
+            DynIntegers(DynIntegers&& MoveSource)
+            {
+                pIntegers = MoveSource.pIntegers;   // take ownership
+                MoveSource.pIntegers = NULL;    // release ownership from source
+            }
+
+            // move assignment operator
+            DynIntegers& operator= (DynIntegers&& MoveSource)
+            {
+                if(this != &MoveSource)
+                {
+                    delete [] pIntegers;    // release own resources
+                    pIntegers = MoveSource.pIntegers;
+                    MoveSource.pIntegers = NULL;
+                }
+                return *this;
+            }
+
+            ~DynIntegers()  {delete[] pIntegers;}   // destructor
+
+            // implement default constructor, copy constructor, assignment operator
+    };
+
+    

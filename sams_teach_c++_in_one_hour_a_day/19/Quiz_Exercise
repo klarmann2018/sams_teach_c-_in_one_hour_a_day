@@ -1,0 +1,48 @@
+Quiz
+
+1. You declare a set of integer as set<int>. What function supplies the sort criteria?
+
+- std::set.sort();
+
+ans:
+
+2. Where would you find duplicate elements in a multiset?
+
+- count(data);
+
+ans:
+
+3. What set or multiset function supplies the number of elements in the container?
+
+- size();
+
+ans:
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""" 
+Exercises
+
+1. Extend the telephone directory example in this lesson to find a person's name
+   given a phone number, without changing structure ContactItem. (Hint: Define
+   the set with a binary predicate that sorts items in accordance with the
+   number, thus overriding the default sort based on the < operator.)
+
+- 
+
+ans:
+
+2. Define a multiset to store entered words and their meanings; that is, make a
+   multiset work as a dictionary. (Hint: The multiset should be one of a
+   structure that contains two strings: the word and its meaning.)
+
+- 
+
+ans:
+
+3. Demonstrate via a simple program that a set cannot accept duplicate entries
+   whereas a multiset can.
+
+- 
+
+ans:
+
+

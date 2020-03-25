@@ -1,0 +1,83 @@
+Quiz
+1. You have a base class object pointer pBase. What cast would you use to
+   determine whether it is a Derived1 type or a Derived2 type?
+
+  - dynamic_cast
+ans:
+    dynamic_cast
+
+2. You have a const reference to an object and tried calling a public member
+   function, written by you. The compiler does not allow this because the
+   function in question is not a const member. Would you correct the function or
+   would you use const_cast?
+
+-  use const_cast
+ans:
+    Correct the function, of course. const_cast and casting operators in general
+    should be a last resort.
+
+3. reinterpret_cast should be used only when static_cast does not work, and the
+   cast is known to be required and safe. True or false?
+
+-  false
+ans:
+    True
+
+4. Is it true that many instances of static_cast-based conversions, especially
+   between simple data types, would be performed automatically by a good C++
+   compiler?
+
+-  true.
+ans:
+    Yes, true.
+
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""" 
+Exercises
+
+1. BUG BUSTERS: What is the problem in the following code?
+    void DoSomething(Base* pBase)
+    {
+        Derived* pDerived = dynamic_cast<Derived*> (pBase);
+        pDerived -> DerivedClassMethod();
+    }
+
+- have not the check valid.
+
+ans:
+    The result of a dynamic cast operation should always be checked for validity:
+    void DoSomething(Base* pBase)
+    {
+        Derived* pDerived = dynamic_cast<Derived*>(pBase);
+
+        if(pDerived)    // check for validity
+            pDerived -> DerivedClassMethod();
+    }
+
+2. You have pointer pFish* that points to object of class Tuna.
+    Fish* pFish = new Tuna;
+    Tuna* pTuna = <what cast?> pFish;
+
+    what cast would you use to get a pointer Tuna* point to this object of type
+    Tuna? Demonstrate using code.
+
+-   dynamic_cast
+
+ans:
+    Use static_cast as you know that the object being pointed to is of type
+    Tuna. Using Listing 13.1 as a base, here is what main() would look like:
+    
+    int main()
+    {
+        Fish* pFish = new Tuna;
+        Tuna* pTuna = static_cast<Tuna*>(pFish);
+        // Tuna::BecomeDinner will work only using valid Tuna*
+        pTuna->BecomeDinner();
+
+        // virtual destructor in Fish ensures invocation of ~Tuna()
+        delete pFish;
+
+        return 0;
+    }
+
+

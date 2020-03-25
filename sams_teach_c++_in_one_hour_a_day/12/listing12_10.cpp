@@ -50,6 +50,8 @@ public:
     {
         if(Index < GetLength())
             return Buffer[Index];
+        else 
+            return -1;
     }
 
     // Destructor

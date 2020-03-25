@@ -1,0 +1,203 @@
+Quiz
+
+1. What STL template class does the std::string specialize?
+
+- basic_string
+
+ans:
+    std::basic_string<T>
+
+2. If you were to perform a case-insensitive comparison of two strings, how
+   would you do it?
+
+- tolower 
+
+ans:
+    Copy the two strings into two copy objects. Covert each copied string into
+    either lowercase or uppercase. Return the result of comparison of the
+    onverted copied strings.
+
+3. Are the STL string and a C-style string similar?
+
+- yes.
+
+ans:
+    No, they are not. C-style strings are actually raw pointers akin to a
+    character array, whereas STL string is a class that implements various
+    operators and member functions to make string manipulation and handling as
+    simple as possible.
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""" 
+
+Exercises
+
+1. Write a program to verify whether the word input by the user is a palindrome.
+   For example: ATOYOTA is a palindrome, as the word does not change when
+   reversed.
+
+- 
+  string palindrome
+  cin >> palindrome;
+  string newPalindrom = revers(palindrome);
+  if(newPalindrom == palindrome)
+      cout << "you input: " << palindrome << " is palindrome" << endl;
+  else 
+      cout << "not palindrome!" << endl;
+
+ans:
+
+    The program needs to use std::reverse:
+#include <string>
+#include <iostream>
+#include <algorithm>
+
+int main()
+{
+    using namespace std;
+
+    cout << "Please enter a word for palindrome-check: " << endl;
+    string strInput;
+    cin >> strInput;
+
+    string strCopy(strInput);
+    reverse(strCopy.begin(), strCopy.end());
+
+    if(strCopy == strInput)
+        cout << strInput << " is a palindrome!" << endl;
+    else 
+        cout << strInput << " is not a palindrome." << endl;
+
+    return 0;
+}
+
+2. Write a program that tells the user the number of vowels in a sentence.
+
+-
+    vowels: a e i o u
+    string strInput;
+    cin >> strInput;
+    int num=0;
+    auto iElement = find(strInput.begin(), strInput.end(), 'a');
+    while(iElement != strInput.end())
+    {
+        num++;
+        find(iElement, strInput.end(),'a');
+    }
+
+
+
+ans:
+
+    Use std::find:
+#include<string>
+#include<iostream>
+
+using namespace std;
+
+// Find the number of character 'chToFind' in string "strInput"
+int GetNumCharacters(string& strInput, char chToFind)
+{
+    int nNumCharactersFound = 0;
+
+    size_t nCharOffset = strInput.find(chToFind);
+    while(nCharOffset != string::npos)
+    {
+        ++ nNumCharactersFound;
+        
+        nCharOffset = strInput.find(chToFind, nCharOffset + 1);
+    }
+
+    return nNumCharactersFound;
+}
+
+int main()
+{
+    cout << "Please enter a string: " << endl << "> ";
+    string strInput;
+    getline(cin, strInput);
+    
+    int nNumVowels = GetNumCharacters(strInput, 'a');
+    nNumVowels += GetNumCharacters(strInput, 'e');
+    nNumVowels += GetNumCharacters(strInput, 'i');
+    nNumVowels += GetNumCharacters(strInput, 'o');
+    nNumVowels += GetNumCharacters(strInput, 'u');
+
+    cout << "The number of vowels in that sentence is: " << nNumVowels;
+
+    return 0;
+}
+
+3. Convert every alternate character of a string into uppercase.
+
+-
+   string strInput;
+   transform(strInput.begin(), strInput.end(), ::toupper);
+
+ans:
+    Use function toupper:
+#include <string>
+#include <iostream>
+#include <algorithm>
+
+int main()
+{ 
+    using namespace std;
+
+    cout << "Please enter a string for case-conversion:" << endl;
+    cout << "> ";
+
+    string strInput;
+    getline(cin, strInput);
+    cout << endl;
+
+    for(size_t nCharIndex = 0; nCharOffset < strInput.length(); nCharOffset +=2)
+        strInput [nCharIndex] = toupper (strInput [nCharIndex]);
+
+    cout << "The string converted to upper case is: " << endl;
+    cout << strInput << endl << endl;
+
+    return 0;
+}
+
+4. Your program should have four string objects that are initialized to "I",
+   "Love", "STL", "String." Append them with a space in between and display the
+   sentence.
+
+-
+    void appendObjects(string& str, string strToAppend )
+    {
+        str.append(strToAppend);
+        str.append(" ");
+    }
+string strResult = null;
+appendObjects(strResult, "I");
+appendObjects(strResult, "Love");
+appendObjects(strResult, "STL");
+appendObjects(strResult, "String");
+
+cout << "str: " << strResult << endl;
+
+
+ans:
+
+This can be simply programmed as 
+
+#include <string>
+#include <iostream>
+
+int main()
+{
+    using namespace std;
+
+    const string str1 = "I";
+    const string str2 = "Love";
+    const string str3 = "STL";
+    const string str4 = "String.";
+
+    string strResult = str1 + " " + str2 + " " + str3 + " " + str4;
+
+    cout << "The sentence reads:" << endl;
+
+    return 0;
+}
+

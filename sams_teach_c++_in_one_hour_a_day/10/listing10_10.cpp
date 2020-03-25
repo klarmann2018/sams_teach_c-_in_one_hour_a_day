@@ -20,37 +20,45 @@
 #include<iostream>
 using namespace std;
 
-class Mammal {
+class Mammal 
+{
 public:
-    void feedBabyMilk() {
-        cout<<"Mammal: Baby says glug!"<<endl;
+    void feedBabyMilk() 
+    {
+        cout << "Mammal: Baby says glug!" << endl;
     }
 };
 
 class Reptile {
 public:
-    void spitVenom() {
-        cout<<"Reptile: Shoo ememy! Spits venom!"<<endl;
+    void spitVenom() 
+    {
+        cout << "Reptile: Shoo ememy! Spits venom!" << endl;
     }
 
 };
 
 class Bird {
 public:
-    void layEggs() {
-        cout<<"Bird: Laid my eggs, am lighter now!"<<endl;
+    void layEggs() 
+    {
+        cout << "Bird: Laid my eggs, am lighter now!" << endl;
     }
 };
 
-class Platypus:public Mammal, public Bird, public Reptile {
+class Platypus:public Mammal, public Bird, public Reptile 
+{
 public:
-    void swim() {
-        cout<<"Platypus: Voila, i can swim!"<<endl;
+    void swim() 
+    {
+        cout << "Platypus: Voila, i can swim!" << endl;
     }
 
 };
 
-int main() {
+int main() 
+{
+
     Platypus realFreak;
     realFreak.layEggs();
     realFreak.feedBabyMilk();

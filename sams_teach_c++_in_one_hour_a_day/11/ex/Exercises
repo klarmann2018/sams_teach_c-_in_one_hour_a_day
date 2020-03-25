@@ -1,0 +1,91 @@
+1. Demonstrate an inheritance hierarchy that implements the question in Quiz 1 for Circle and Triangle.
+#include<iostream>
+using namespace std;
+
+class shape()
+{
+        public: 
+            virtual double area() = 0;
+            virtual void print() = 0;
+};
+
+class Circle : public shape
+{
+    double Radius;
+    public:
+        Circle(double inputRadius):Radius(inputRadius){}
+
+        double Area()
+        {
+                return 3.1415 * Radius * Radius;
+        }
+
+        void Print()
+        {
+            cout << "Circle says hello!" << endl;
+        }
+
+};
+
+class Triangle : public shape
+{
+    double Base, Height;
+    public:
+        Triangle(double inputBase, double inputHeight) : Base(inputBase), Height(inputHeight){}
+
+        double Area()
+        {
+            return 0.5 * Base * Height;
+        }
+
+        void Print()
+        {
+            cout << "Triangle says hello!" << endl;
+        }
+};
+
+int main()
+{
+    Circle myRing(5);
+    Triangle myWaringTriangle(6.6, 2);
+
+    cout << "Area of circle: " << myRing.Area() << endl;
+    cout << "Area of triangle: " << myWarningTriangle.Area() << endl;
+
+    myRing.Print();
+    myWarningTriangle.Print();
+
+    return 0;
+}
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""" 
+2. BUG BUSTERS: what is the problem in the following code:
+class Vehicle
+{
+    public:
+        Vehicle(){}
+        ~Vehicle(){}
+};
+class Car: public Vehicle
+{
+    public:
+        Car(){}
+        ~Car(){}
+};
+
+problem:
+Missing virtual destructor! (ans)
+
+3. In the(uncorrected) code in Exercise 2, what is the order of execution of constructors and destructors if an instance of car is created and destroyed like this:
+
+Vehicle* pMyRacer = new Car;
+delete pMyRacer;
+
+
+ Without a virtual destructor, the constructor sequence would be Vehicle() fol-
+ lowed by Car(), whereas the nonvirtual destructor would result only in ~Car()
+ being invoked.
+    
+
+
+

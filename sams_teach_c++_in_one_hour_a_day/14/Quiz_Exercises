@@ -1,0 +1,116 @@
+Quiz
+
+1. What is an inclusion guard?
+- an inclusion guard : preprocessor for the program
+ans:
+    A preprocessor construct that keeps you from multiplying or recursively
+    including header files.
+
+2. Consider the following macro:
+    #define SPLIT(x) x/5
+    What is the result if this is called with 20?
+- 4
+ans:
+    4
+
+3. What is the result if the SPLIT macro in Question 2 is called with 10+10?
+- 12
+ans:
+    10 + 10 / 5 = 10 + 2 = 12.
+
+4. How would you modify the SPLIT macro to avoid erroneous results?
+- #define SPLIT(x) (x)/5
+ans:
+    Use brackets:
+    #define SPLIT(x) ((x)/5)
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""" 
+
+Exercises
+
+1. Write a macro that multiplies two numbers.
+- #define multiply(x) x*x;
+ans:
+    Here it is:
+#define MULTIPLY(a,b) ((a)*(b))
+
+2. Write a template version of the macro in Exercise 1.
+- 
+  template <typename T>
+  T multiply(T& a, T& b)
+  {
+      return a * b;
+  }
+
+ans:
+    This is the template version of the macro seen in the answer to quiz
+    question 4:
+    template <typename T>
+    T Split(const T& input)
+    {
+        return (input / 5);
+    }
+
+3. Implement a template function for swap that exchanges two variables.
+-
+ template <typename T>
+ void swap( T& a,  T& b)
+ {
+     T temp;
+     temp = a;
+     a=b;
+     b=temp;
+ }
+
+ans:
+    The template version of swap would be
+    template <typename T>
+    void Swap(T& x, T& y)
+    {
+        T temp = x;
+        x = y;
+        y = temp;
+    }
+
+4. BUG BUSTERS: How would you improve the following macro that computes the
+   quarter of an input value?
+    #define QUARTER(x) (x / 4)
+-
+ #define QUARTER(x) ((x)/4)
+
+ans:
+    #define QUARTER(x) ((x)/4)
+
+5. Write a simple template class that holds two arrays of types that are defined
+   via the class's template parameter list. The size of the array is 10, and the
+   template class should have accessor functions that allow for the manipulation
+   of array elements.
+
+-
+ template <typename T>
+ class TemplateClass
+ {
+     T[] a, b;
+     TemplateClass(T[]& inputA, T[]& inputB):a(inputA),b(inputB);
+
+    T[] getElements(){
+        for(auto iElement=a.cbegin();
+        iElement != a.cend();
+        ++ iElement)
+            cout << * iElement << " " ;
+        }
+        cout << endl;
+ }
+
+ans:
+    The template class definition would look like the following:
+    template <typename Array1Type, typename Array2Type>
+    class TwoArrays
+    {
+        private:
+            Array1Type Array1[10];
+            Array2Type Array2[10];
+        public:
+            Array1Type& GetArray1Element(int Index){return Array1[Index];}
+            Array2Type& GetArray2Element(int Index){return Array2[Index];}
+    }

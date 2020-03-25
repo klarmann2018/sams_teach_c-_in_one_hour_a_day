@@ -1,0 +1,143 @@
+Quiz
+
+1. Is there any loss in performance when inserting items in the middle of the
+   STL list as compared to the beginning or the end?
+
+- no
+
+ans:
+    Elements can be inserted in the middle of the list as they can be at either
+    ends. There is no gain or loss in performance due to position.
+
+2. Two iterators are pointing to two elements in an STL list object, and then an
+   element is inserted between them. Are these iterators invalidated by the
+   insert action?
+
+- no
+
+ans:
+    The specialty of the list is that operations such as these don't invalidate
+    existing iterators.
+
+3. How can the contents of a std::list be cleared?
+
+- std::list::clear()
+
+ans:
+    mList.clear();
+    or
+    mList.erase(mList.begin(), mList.end());
+
+4. Is it possible to insert multiple elements in a list?
+
+- ok
+
+ans:
+    Yes, an overload of the insert function enables you to insert a range from a
+    source collection.
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""" 
+Exercises
+
+1. Write a short program that accepts numbers from the user and inserts them at
+   the top of the list.
+
+- see ex18_01.cpp
+
+ans:
+    This is like Excise solution 1 for the vector in Lesson 17, "Dynamic Array
+    Classes." The only change is that you would use the list insert function as
+    mList.insert(mList.begin(), nDataInput);
+
+2. Using a short program, domostrate that an iterator pointing to an element in
+   a list continues to remain valid even after another element has been inserted
+   before it, thus changing the relative position of the former element.
+
+- see ex18_02.cpp
+
+ans:
+    Store iterators to two elements in a list. Insert an element in the middle
+    using the list's insert function. Use the iterators to demonstrate that they
+    are still able to fetch the values they pointed to before the insertion.
+
+3. Write a program that inserts the contents of a vector into an STL list using
+   the list's insert function.
+
+- see ex18_03.cpp
+
+ans:
+    A possible solution is
+#include<vector>
+#include<list>
+#include<iostream>
+
+using namespace std;
+
+int main()
+{
+    vector<int> vecData(4);
+    vecData[0] = 0;
+    vecData[1] = 10;
+    vecData[2] = 20;
+    vecData[3] = 30;
+
+    list<int> listIntegers;
+
+    // Insert the contents of the vector into the beginning of the list
+    listIntegers.insert(listIntegers.begin(),
+    vecData.begin(), vecData.end());
+
+    cout << "The contents of the list are: ";
+
+    list<int>::const_iterator iElement;
+    for(iElement = listIntegers.begin()
+        ; iElement != listIntegers.end()
+        ; ++ iElement)
+        cout << *iElement << " ";
+
+    return 0;
+}
+
+4. Write a program that sorts and reverses a list of strings.
+
+- see ex18_04.cpp
+
+ans:
+    A possible solution is 
+
+#include<list>
+#include<string>
+#include<iostream>
+
+using namespace std;
+
+int main()
+{
+        list<string> listNames;
+        listNames.push_back("Jack");
+        listNames.push_back("John");
+        listNames.push_back("Anna");
+        listNames.push_back("Skate");
+
+        cout << "The contents of the list are: ";
+
+        list<string>::const_iterator iElement;
+        for(iElement = listNames.begin(); iElement != listNames.end(); ++ iElement)
+            cout << *iElement << " ";
+
+        cout << endl;
+
+        cout << "The contents after reversing are: ";
+        listNames.reverse();
+        for(iElement = listNames.begin(); iElement != listNames.end(); ++ iElement)
+            cout << *iElement << " ";
+        cout << endl;
+
+        cout << "The contents after sorting are: ";
+        listNames.sort();
+        for(iElement = listNames.begin(); iElement != listNames.end(); ++ iElement)
+            cout << * iElement << " ";
+        cout << endl;
+        
+        return 0;
+}

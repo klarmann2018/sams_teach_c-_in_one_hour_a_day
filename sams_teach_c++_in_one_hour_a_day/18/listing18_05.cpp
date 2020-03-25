@@ -40,7 +40,7 @@ int main()
     listIntegers.push_front(2);
     listIntegers.push_front(1);
     listIntegers.push_front(0);
-    listIntegers.push_front(5);
+    listIntegers.push_back(5);
     
     cout << "Initial contents of the list: " << endl;
     DisplayContents(listIntegers);
