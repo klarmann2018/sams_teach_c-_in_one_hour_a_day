@@ -1,0 +1,88 @@
+Quiz
+
+1. You declare a map of integers as map <int>. What function supplies the sort
+   criteria?
+
+- ()operator; == operator
+
+ans:
+    The default sort criterion is specified by std::less<>.
+
+2. Where would you find duplicate elements in multimap?
+
+- count();
+
+ans:
+    Next to each other.
+
+3. What map or multimap function supplies the number of elements in the
+   container?
+
+- size_t size();
+
+ans:
+    size().
+
+4. Where would you find duplicate elements in a map?
+
+- elements in a map is unique.
+
+ans:
+    You would not find duplicate elements in a map!
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""" 
+Exercises
+
+1. You need to write an application that works as a telephone directory where
+   the names of the people need not be unique. What container would you choose?
+   Write a definition of the container.
+
+- multimap;
+  multimap<string,int> mStringToInt;
+
+ans:
+    std::multimap:
+    std::multimap<string, string> multimapPeopleNamesToNumbers;
+    
+
+2. The following is a map template definition in your dictionary application:
+    map<wordProperty, string, fPredicat> mapWordDefinition;
+
+    where word is the structure:
+    struct wordProperty
+    {
+        string strWord;
+        bool bIsFromLatin;
+    };
+
+    Define the binary predicate fPredicate that helps the map sort a key of type
+    wordProperty according to the string attribute it contains.
+
+- 
+  template<typename T>
+  bool fPredicat(const T& wordProperty1, const T& worProperty2)
+  {
+        return (wordProperty1.strWord > wordProperty2.strWord);   
+  }
+
+ans:
+    An associative container that allows duplicate entries.
+    struct fPredicate
+    {
+        bool operator< (const wordProperty& lsh, const wordProperty& rsh) const
+        {
+            return (lsh.strWord < rsh.strWord);
+        }
+    };
+
+3. Demonstrate via a simple program that a map cannot accept duplicate entries
+   whereas a multimap can.
+
+- see ex20_03.cpp
+
+ans:
+    Take a hint from the similarly solved exerise 3 in Lesson 19,"STL Set Classes."
+
+    
+
+

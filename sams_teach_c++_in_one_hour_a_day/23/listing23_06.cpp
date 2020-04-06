@@ -47,7 +47,7 @@ int main()
 
     // Display the array of integers
     DisplayElementKeepCount<int> Functor =
-        for_each( vecIntegers.begin() // Strat of range
+        for_each( vecIntegers.begin() // Start of range
                 , vecIntegers.end()     // End of range
                 , DisplayElementKeepCount<int>());  // Functor
 

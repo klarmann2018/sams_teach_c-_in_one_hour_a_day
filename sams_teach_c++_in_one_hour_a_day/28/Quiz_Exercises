@@ -1,0 +1,107 @@
+Quiz
+
+1. What is std::exception?
+
+- 
+    detect failure, tell user what happened after the running.
+
+ans:
+    A class just like any other, but created expressly as a base class for some
+    other exception classes such as bac_alloc.
+
+2. What type of exception is thrown when an allocation using new fails?
+
+-
+    bad_alloc exception.
+
+ans:
+    std::bad_alloc
+
+3. Is it alright to allocate a million integers in an exception handler(catch
+   block) to back up existing data for instance?
+
+-
+    in try not in catch
+
+ans:
+    That's a bad idea for it's also possible that the exception was thrown in
+    the first place because of a lack of memory.
+
+4. How would you catch an exception object of type class MyException that
+   inherits from std::exception?
+
+-
+    try
+    {
+    }
+    catch(Myexception& exp)
+    {
+        cout << exp.what() << endl;
+        cout << "Sorry, can't continue!" << endl;
+    }
+
+ans:
+    Using the same catch(std::exception& exp) that you can also use for type
+    bad_alloc.
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""" 
+Exercises
+
+1. BUG BUSTER: What is wrong with the following code?
+class SomeIntelligentStuff
+{
+    bool StuffGoneBad;
+
+    public:
+        ~SomeIntelligentStuff()
+        {
+            if(StuffGoneBad)
+                throw "Big problem in this class, just FYI";
+        }
+}
+
+-
+
+ans:
+    Never throw in a destructor.
+
+2. BUG BUSTER: What is wrong with the following code?
+int main()
+{
+    int* pMillionIntegers = new int[1000000];
+    // do something with the million integers
+
+    delete []pMillionIntegers;
+}
+
+-
+
+ans:
+    You forgot to make the code exception safe (missing try... catch block).
+
+3. BUG BUSTER: What is wrong with the following code?
+
+int main()
+{
+    try
+    {
+        int* pMillionIntegers = new int [1000000];
+        // do something with the million integers
+
+        delete[] pMillionIntegers;
+    }
+    catch(exception& exp)
+    {
+        int* pAnotherMillionIntegers = new int[1000000];
+        // take back up of pMillionIntegers and save it to disk
+    }
+    return 0;
+}
+
+-
+
+ans:
+    Don't allocate in a catch block! Not a million integers. Assume the data
+    allocated in try as lost and continue with damage control.
+
+

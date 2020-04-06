@@ -1,0 +1,68 @@
+Quiz
+
+1. You need to only write to a file. What stream would you use?
+
+- ofstream
+
+ans:
+    Use ofstream to only write to a file.
+
+2. How would you use cin to get a complete line from the input stream?
+
+- getline(cin, strData); 
+
+ans:
+    You would use cin.getline(). See Listing 27.7.
+
+3. You need to write std::string objects to a file. Would you choose
+   ios_base::binary mode?
+
+- yes
+
+ans:
+    You wouldn't because std::string contains text information and you can stay
+    with the default mode, which is text(no need for binary).
+
+4. You opened a stream using open(). Why bother using is_open()?
+
+- if(is_open())  to find the file exist or not!
+    
+ans:
+    To check if open() succeeded.
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""" 
+Exercises
+
+1. BUG BUSTER: Find the error in the following code:
+
+    fstream myFile;
+    myFile.open("HelloFile.tex", ios_base::out);
+    myFile<<"Hello file!";
+    myFile.close();
+
+-
+    if(myFile.is_open())
+    {
+        myFile....
+        myFile.close();
+    }
+
+ans:
+    You opened the file but didn't check for success of open() using is_open() before using the stream or closing it.
+
+2. BUG BUSTER: Find the error in the following code:
+
+    ifstream MyFile("SomeFile.txt");
+    if(MyFile.is_open())
+    {
+        MyFile << "This is some text" << endl;
+        MyFile.close();
+    }
+
+-
+    ifstream MyFile("", ios_base::in);
+
+ans:
+    You cannot insert into an ifstream, which is designed for input, not output,
+    and hence does not support stream insertion operator<<.
+

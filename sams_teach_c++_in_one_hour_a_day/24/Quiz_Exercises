@@ -1,0 +1,84 @@
+Quiz
+
+1. Can you change the behavior of the priority_queue for a certain element, such
+   that the one with the greatest value is popped last?
+
+- i can. use: pq.top()
+
+ans:
+    Yes, by supplying a predicate.
+
+2. You have a priority_queue of class Coins. What member operator do you need to
+   define for the priority_queue class to present the coin with the greater
+   value at the top position?
+
+- priority_queue<int, vector<int>, less<int>>
+
+ans:
+    class Coins needs to implement operator<.
+
+3. You have a stack of class CCoins and have pushed six objects into it. Can you
+   access or delete the first coin inserted?
+
+- no.
+
+ans:
+    No, you can only work on the top of the stack. So you can't access the coin
+    at the bottom.
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""" 
+Exercises
+
+1. A queue of people(class CPerson) are lining up at the post office. CPerson
+   contains member attributes that hold age and gender and are defined as
+
+   class Person
+   {
+        public:
+            int Age;
+            bool IsFemale;
+    };
+
+Write a binary predicate for the priority_queue that helps service oder people
+and woman(in that order) on a priority.
+
+- priority_queue<Person, vector<Person>, Predicate<Person>()>
+template<typename T>
+struct Predicate
+{
+    bool operator()(const T& t1, const T& t2) const
+    {
+
+        return(t1.age>t2.age);
+    }
+
+};
+
+ans:
+    The binary predicate could be operator<:
+    class Person
+    {
+        public:
+            int Age;
+            bool IsFemale;
+
+            bool operator< (const Person& anotherPerson) const
+            {
+                bool bRet = false;
+                if(Age > anotherPerson.Age)
+                    bRet=true;
+                else if (IsFemale && anotherPerson.IsFemale)
+                    bRet =true;
+
+                return bRet;
+            }
+    }
+
+2. Write a program that reverses the user's string input using the stack class.
+
+- see ex24_02.cpp
+
+ans:
+    Just insert into the stack. As you pop data, you effectively reverse
+    contents because a stack is a LIFO type of a container.
+

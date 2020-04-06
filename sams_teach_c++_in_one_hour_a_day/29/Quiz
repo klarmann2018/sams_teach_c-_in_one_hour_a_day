@@ -1,0 +1,29 @@
+Quiz
+
+1. My image processing application doesn't respond when it is correcting the
+   contrast. What should I do?
+
+- 
+    change the program, optimal the running.
+
+ans:
+    It seems that your application does all the activity within one thread. So,
+    if the image processing itself(contrast correction) is processor intensive,
+    the UI is unresponsive. You ought to split these two activities into two
+    threads so that the OS switches the two threads, giving processor time
+    to both the UI and the worker that does the correction.
+
+2. My multithreaded application allows for extremely fast access to the
+   database. Yet, sometimes I see that the data fetched is garbled. What am I
+   doing wrong?
+
+- 
+  use multithread program. simphore
+
+ans:
+    Your threads are possibly poorly synchronized. You are writing to and
+    reading from an object at the same time, resulting in inconsistent or
+    garbled data recovery. Insert a binary semaphore and ensure that the table
+    cannot be accessed when it is being modified.
+
+

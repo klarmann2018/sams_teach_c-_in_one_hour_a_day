@@ -1,0 +1,76 @@
+Quiz
+
+1. Can the bitset expand its internal buffer to hold a variable number of
+   elements?
+
+- 
+    no can't
+
+ans:
+    No. The number of bits a bitset can hold is fixed at compile time.
+
+2. Why is the bitset not classified as an STL container class?
+
+-
+    ?
+
+ans:
+    Because it isn't one. It can't scale itself dynamically as other containers
+    do; it doesn't support iterators in the way containers need to.
+
+3. Would you use the std::vector to hold a number of bits that is fixed and
+   known at compile time?
+
+-
+    vector<bool>
+
+ans:
+    No. std::bitset is best suited for this purpose.
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""" 
+Exercises
+
+1. Write a bitset class that contains four bits. Initialize it to a number,
+   display the result, and add it to another bitset object.(The catch: Bitsets
+   don't allow bitsetA = bitsetX + bitsetY.)
+
+- 
+    see ex25_01.cpp
+
+ans:
+    std::bitset featuring instantiation, initialization, display, and addition
+    is demonstrated here:
+#include<bitset>
+#include<iostream>
+
+int main()
+{
+    // Initialize the bitset to 1001
+    std::bitset<4> fourBits(9);
+
+    std::cout << "fourBits: " << fourBits << std::endl;
+
+    // Initialize another bitset to 0010
+    std::bitset<4> fourMoreBits(2);
+
+    std::cout << "fourMoreBits: " << fourMoreBits << std::endl;
+
+    std::bitset<4> addResult(fourBits.to_ulong()+fourMoreBits.to_ulong());
+
+    std::cout << "The result of the addition is: " << addResult;
+
+    return 0;
+}
+    
+
+2. Demonstrate how you would toggle(that is, switch) the bits in a bitset.
+
+- 
+  see ex25_02.cpp
+
+ans:
+    call the flip() function on any of the bitset objects in the preceding sample:
+
+    addResult.flip();
+    std::cout<< "The result of the flip is: " << addResult << std::endl;
+

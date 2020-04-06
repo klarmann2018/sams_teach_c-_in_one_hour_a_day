@@ -5,18 +5,23 @@ Quiz
 - std::set.sort();
 
 ans:
+    The default sort criterion is specified by std::less<>, which effectively
+    uses operator< to compare two integers and returns true if the first is less
+    than the second.
 
 2. Where would you find duplicate elements in a multiset?
 
 - count(data);
 
 ans:
+    Together, one after another.
 
 3. What set or multiset function supplies the number of elements in the container?
 
 - size();
 
 ans:
+    size(), as is the case with all STL containers.
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""" 
 Exercises
@@ -26,23 +31,101 @@ Exercises
    the set with a binary predicate that sorts items in accordance with the
    number, thus overriding the default sort based on the < operator.)
 
-- 
+- see ex19_01.cpp 
 
 ans:
+    The binary predicate can be
+    struct FindContactGivenNumber
+    {
+         bool operator() (const CContactItem& lsh, const CContactItem& rsh) const
+         {
+             return (lsh.strPhoneNumber < rsh.strPhoneNumber);
+         }
+     };
 
 2. Define a multiset to store entered words and their meanings; that is, make a
    multiset work as a dictionary. (Hint: The multiset should be one of a
    structure that contains two strings: the word and its meaning.)
 
-- 
+- see ex19_02.cpp
 
 ans:
+    The structure and the multiset definition would be
+#include <set>
+#include <iostream>
+#include <string>
 
+using namespace std;
+
+struct PAIR_WORD_MEANING
+{
+    string strWord;
+    string strMeaning;
+
+    PAIR_WORD_MEANING(const string& sWord, const string& sMeaning)
+    :strWord(sWord), strMeaning(sMeaning){}
+
+    bool operator< (const PAIR_WORD_MEANING& pairAnotherWord) const
+    {
+        return (strWord < pairAnotherWord.strWord);
+    }
+};
+
+int main()
+{
+    
+    multiset<PAIR_WORD_MEANING> msetDictionary;
+    PAIR_WORD_MEANING word1("C++", "A programming language");
+    PAIR_WORD_MEANING word2("Programmer", "A geek!");
+
+    msetDictionary.insert(word1);
+    msetDictionary.insert(word2);
+
+    return 0;
+}
 3. Demonstrate via a simple program that a set cannot accept duplicate entries
    whereas a multiset can.
 
-- 
+- see ex19_03.cpp 
 
 ans:
 
+    One solution is
 
+#include<set>
+#include<iostream>
+
+using namespace std;
+
+template<typename T>
+void DisplayContent(const T& sequence)
+{
+        T::const_iterator iElement;
+        for(iElement = sequence.begin(); iElement != sequence.end(); ++ iElement)
+            cout << * iElement << " ";
+}
+
+int main()
+{
+    multiset<int> msetIntegers;
+
+    msetIntegers.insert(5);
+    msetIntegers.insert(5);
+    msetIntegers.insert(5);
+
+    set<int> setIntegers;
+
+    setIntegers.insert(5);
+    setIntegers.insert(5);
+    setIntegers.insert(5);
+
+    cout << "Displaying the contents of the multiset: ";
+    DisplayContent(msetIntegers);
+    cout << endl;
+
+    cout << "Displaying the contents of the set: ";
+    DisplayContent(setIntegers);
+    cout << endl;
+    
+    return 0;
+}

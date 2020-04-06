@@ -1,0 +1,120 @@
+Quiz
+
+1. What is the term used for a unary function that returns a bool result?
+
+- predicate
+
+ans:
+    A unary predicate.
+
+2. What would be the utility of a function object that neither modifies data nor
+   returns bool? Can you explain using an example?
+
+- const
+  void DemoFunc(const T& input) const
+
+ans:
+    It can display data, for example, or simply count elements.
+
+3. What is the definition of the term function objects?
+
+- 
+
+ans:
+    Because in C++ all entities that exist during the runtime of an application
+    are objects. In this case, even structures and classes can be made to work
+    as functions, hence the term function objects. Note that functions can also
+    be available via function pointers---these are function objects, too.
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""" 
+Exercises
+
+1. Write a unary function that can be used with std::for_each to display the
+   double of the input parameter.
+
+- see ex21_01.cpp
+
+ans:
+    A solution is
+    template<typename elementType=int>
+    struct Double
+    {
+        void operator()(const elementType element) const
+        {
+            cout << element * 2 << ' ';
+        }
+    };
+
+    This unary predicate can be used as
+    int main()
+    {
+         vector<int> vecIntegers;
+
+         for(int nCount=0; nCount<10; ++nCount)
+             vecIntegers.push_back(nCount);
+
+         cout << "Displaying the vector of integers: " << endl;
+
+         // Display the array of integers
+         for_each(vecIntegers.begin()
+         , vecIntegers.end()
+         , Double<>());
+
+         return 0;
+     }
+
+2. Extend this predicate to indicate the number of times it was used.
+
+- see ex21_02.cpp
+
+ans:
+    Add a member integer that is incremented every time the operator() is used:
+    template<typename elementType=int>
+    struct Double
+    {
+        int m_nUsageCount;
+
+        // Constructor
+        Double():m_nUsageCount(0){};
+
+        void operator()(const elementType element) const
+        {
+            ++ m_nUsageCount;
+            cout << element * 2 << ' ';
+        }
+    };
+
+3. Write a binary predicate that helps sort in ascending order.
+
+- see ex21_03.cpp 
+
+ans:
+    The binary predicate is the following:
+    template<typename elementType>
+    class CSortAscending
+    {
+        public:
+            bool operator()(const elementType& num1, const elementType& num2) const
+            {
+                return (num1 < num2);
+            }
+    }
+
+    this predicate can be used as
+
+    int main()
+    {
+        std::vector<int> vecIntegers;
+
+        // Insert sample numbers: 100, 90... 20, 10
+        for(int nSample = 10; nSample > 0; -- nSample)
+            vecIntegers.push_back(nSample * 10);
+
+        std::sort(vecInteger.begin(), vecIntegers.end(), CSortAscending<int>());
+
+        for(size_t nElementIndex = 0; nElementIndex < vecIntegers.size(); ++ nElementIndex)
+            cout << vecIntegers[nElementIndex] << ' ';
+        return 0;
+    }
+
+

@@ -1,0 +1,111 @@
+Quiz
+
+1. Where would you look before writing your own smart pointer for your
+   application?
+
+- 
+    document on line. boost
+
+ans:
+    I would look at www.boost.org. I hope you would, too!
+
+2. Would a smart pointer slow down your application significantly?
+
+- 
+    no
+
+ans:
+    No, typically well-programmed(and correctly chose) smart pointers would not.
+
+3. Where can reference-counted smart pointers hold the reference count data?
+
+-
+    ???
+
+ans:
+    When intrusive, objects that they own need to hold it; otherwise, they can
+    hold this information in a shared object on the free store.
+
+4. Should the linked list mechanism used by reference-linked pointers be singly
+   or doubly linked?
+
+- 
+    ??? doubly linked
+
+ans:
+    The list needs to be traversed in both directions, so it needs to be doubly
+    linked.
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""" 
+Exercises
+
+1. BUG BUSTER: Point out the bug in this code:
+    std::auto_ptr<SampleClass> pObject(new SampleClass());
+    std::auto_ptr<SampleClass> pAnotherObject(pObject);
+    pObject->DoSomething();
+    pAnotherObject->DoSomething();
+
+-
+    can't
+ans:
+    pObjec->DoSomething(); is faulty because the pointer lost ownership of the
+    object during the previous copy step. This will crash(or do something very
+    unpleasant).
+
+
+2. Use the unique_ptr class to instantiate a Carp that inherits from Fish. Pass
+   the object as a Fish pointer and comment on slicing, if any.
+
+- 
+    class Fish{};
+    class Carp:Fish{};
+    unique_ptr<Carp> carp;
+ans:
+    The code would look like this:
+#include<memory>
+#include<iostream>
+using namespace std;
+
+class Fish
+{
+    public:
+        Fish(){cout << "Fish: Constructed!" << endl;}
+        ~Fish(){cout << "Fish: Destructed!" << endl;}
+
+        void Swim() const {cout << "Fish swims in water" << endl;}
+};
+
+class Carp: public Fish
+{
+};
+
+void MakeFishSwim(const unique_ptr<Fish>& inFish)
+{
+    inFish->Swim();
+}
+
+int main()
+{
+    unique_ptr<Fish> myCarp(new Carp);  // note this
+    MakeFishSwim(myCarp);
+    
+    return 0;
+}
+
+As there is no copy step involved, given that MakeFishSwim() accepts the
+argument as a reference, there is no question of slicing. Also, note the
+instantiation syntax of variable myCarp.
+
+3. BUG BUSTER: Point out the bug in this code:
+    std::unique_ptr<Tuna> myTuna(new Tuna);
+    unique_ptr<Tuna> copyTuna;
+    copyTuna = myTuna;
+
+- 
+
+ans:
+    A unique_ptr does not allow copy or assignment as the copy constructor and
+    copy assignment operator are both private.
+    
+
+

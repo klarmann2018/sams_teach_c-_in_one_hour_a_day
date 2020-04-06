@@ -1,0 +1,95 @@
+Quiz
+
+1. How does a compiler recognize the start of a lambda expression?
+
+- [](const T& cT){ ;return();} 
+
+ans:
+    A lambda always starts with [].
+
+2. How would you pass state variables to a lambda function?
+
+- [var1, var2, ...](){}
+
+ans:
+    Via a capture list [Var1, Var2, ...](Type& param) { ...; }
+
+3. If you need to supply a return value in a lambda, how would you do it?
+
+- [&var1, &var2, ...](const T& cT1, const T& cT2, ...)->ReturnType {Statement 1; Statement 2; return(value or expression); }
+
+ans:
+    Like this:
+    [Var1, Var2, ...](Type& param) -> ReturnType { ...; }
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""" 
+Exercises
+
+1. Write a lambda binary predicate that would help sort in descending order.
+
+- see ex22_01.cpp
+
+ans:
+    This is how the lambda would look:
+    sort(vecNumbers.begin(), vecNumbers.end(), [](int Num1, int
+    Num2){return(Num1 > Num2);});
+
+2. Write a lambda function that, when used in for_each, adds a user-specified
+   value to that in a container such as vector.
+
+- see ex22_02.cpp 
+
+ans:
+    This is what the lambda would look like:
+    cout << "Number do you wish to add to all elements: ";
+    int NumInput = 0;
+    cin >> NumInput;
+    
+    for_each(vecNumbers.begin(), vecNumbers.end(),
+    [=](int& element){element += NumInput;} );
+
+    The sample that demostrates the solutions in Exercise 1 and 2 is
+
+#include<iostream>
+#include<algorithm>
+#include<vector>
+using namespace std;
+
+template<typename T>
+void DisplayContents(const T& Input)
+{
+    for(auto iElement = Input.cbegin() // auto, cbegin and cend: c++11
+        ; iElement != Input.cend()
+        ; ++ iElement)
+        cout << *iElement << ' ';
+    cout << endl;
+}
+
+int main()
+{
+    vector<int> vecNumbers;
+    vecNumbers.push_back(25);
+    vecNumbers.push_back(-5);
+    vecNumbers.push_back(122);
+    vecNumbers.push_back(2011);
+    vecNumbers.push_back(-10001);
+    DisplayContents(vecNumbers);
+
+    sort(vecNumbers.begin(), vecNumbers.end());
+    DisplayContents(vecNumbers);
+
+    sort(vecNumbers.begin(), vecNumbers.end(), [](int Num1, int Num2){return (Num1 > Num2);});
+    DisplayContents(vecNumbers);
+
+    cout << "Number do you wish to add to all elements: ";
+    int NumInput = 0;
+    cin >> NumInput;
+
+    for_each(vecNumbers.begin(), vecNumbers.end(), [=](int& element){element += NumInput;});
+
+    DisplayContents(vecNumbers);
+
+    return 0;
+}
+
+
